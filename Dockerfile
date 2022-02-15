@@ -1,17 +1,21 @@
-FROM ubuntu:trusty
+FROM alpine:latest
 
-LABEL maintainer="Kurt Huwig"
+LABEL maintainer="Fabian Schuh <fabian@blockops.de>"
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    duply \
-    haveged \
-    ncftp \
-    python-boto \
-    python-paramiko \
-    pwgen \
-    rsync \
-    openssh-client \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+RUN  echo 'http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
+    && apk update \
+    && apk add bash \
+        duply \
+        py-pip \
+        haveged \
+        ncftp \
+        py-boto \
+        py-paramiko \
+        pwgen \
+        rsync \
+        openssh-client \
+        mariadb-client \
+    && pip install --upgrade pip
 
 ENV HOME /root
 
