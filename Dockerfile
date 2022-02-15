@@ -15,6 +15,7 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositori
         rsync \
         openssh-client \
         mariadb-client \
+        minio-client \
     && pip install --upgrade pip
 
 ENV HOME /root
